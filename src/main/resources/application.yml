@@ -3,14 +3,14 @@ spring:
     property-naming-strategy: SNAKE_CASE
 
   datasource:
-    url: jdbc:mysql://localhost:3306/Udon
-    username: root
-    password: kang0525@
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL:jdbc:mysql://localhost:3306/Udon}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${DDL_AUTO:update}
     properties:
       hibernate:
         format_sql: true
@@ -22,6 +22,6 @@ server:
   port: ${SERVER_PORT:8080}
 
 feign:
-  actionKey: ce1Xt98RxWbgebuHIYVtCG4IPkRZ2BmKv0eHXGpU%2FJv0JkJDyFs%2ByGzYULQQEOnQ01JERyyeTZr%2BRmHNgQT8zQ%3D%3D
-  shelterKey: ce1Xt98RxWbgebuHIYVtCG4IPkRZ2BmKv0eHXGpU/Jv0JkJDyFs+yGzYULQQEOnQ01JERyyeTZr+RmHNgQT8zQ==
+  actionKey: ${ACTION_KEY}
+  shelterKey: ${SHELTER_KEY}
 
