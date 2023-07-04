@@ -4,15 +4,17 @@ import com.example.udon_server.domain.place.entity.Place;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Builder
 public class PlaceResponse {
 
     private long id;
 
-    private String lon; // 위도
+    private BigDecimal lon; // 위도
 
-    private String lat; // 경도
+    private BigDecimal lat; // 경도
 
     private String address; // 주소
 

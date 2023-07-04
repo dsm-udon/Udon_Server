@@ -4,7 +4,6 @@ import com.example.udon_server.domain.place.entity.Place;
 import com.example.udon_server.domain.place.presentation.dto.PlaceResponse;
 import com.example.udon_server.domain.place.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PlaceUtil {
@@ -23,26 +21,26 @@ public class PlaceUtil {
 
     public List<PlaceResponse> findPlace(String serviceKey, Integer page, Integer rows, String type) {
 
-        final JSONArray response = new JSONObject(placeFeignClient.getPlace(serviceKey, page, rows, type))
-                .getJSONArray("TsunamiShelter");
-
-        final long totalCount = response.getJSONObject(0).getJSONArray("head").optJSONObject(0)
+        final long totalCount = new JSONObject(placeFeignClient.getPlace(serviceKey, page, rows, type))
+                .getJSONArray("TsunamiShelter").getJSONObject(0).getJSONArray("head")
+                .optJSONObject(0)
                 .getLong("totalCount");
 
         List<PlaceResponse> result = new ArrayList<>();
 
         for (int i = 0; i < totalCount; i++){
 
-            JSONObject data = response.getJSONObject(1).getJSONArray("row").getJSONObject(i);
+            JSONObject data = new JSONObject(placeFeignClient.getPlace(serviceKey, page + i, rows, type))
+                    .getJSONArray("TsunamiShelter").getJSONObject(1).getJSONArray("row").getJSONObject(0);
 
             Place place = Place.builder()
                     .id(data.getLong("id"))
-                    .lon(data.getBigDecimal("lon").toString())
-                    .lat(data.getBigDecimal("lat").toString())
+                    .lon(data.getBigDecimal("lon"))
+                    .lat(data.getBigDecimal("lat"))
                     .address(data.getString("address"))
                     .shelAv(data.getLong("shel_av"))
                     .shelDivType(data.getString("shel_div_type"))
-                    .seismic(!data.getString("seismic").isEmpty())
+                    .isSeismic(!data.getString("seismic").isEmpty())
                     .build();
 
             placeRepository.save(place);
