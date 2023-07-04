@@ -12,6 +12,8 @@ public class PlaceResponse {
 
     private long id;
 
+    private String shelNm;
+
     private BigDecimal lon; // 위도
 
     private BigDecimal lat; // 경도
@@ -27,6 +29,7 @@ public class PlaceResponse {
     public static PlaceResponse of(Place place) {
         return PlaceResponse.builder()
                 .id(place.getId())
+                .shelNm(place.getShelNm())
                 .lon(place.getLon())
                 .lat(place.getLat())
                 .address(place.getAddress())

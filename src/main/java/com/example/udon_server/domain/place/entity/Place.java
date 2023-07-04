@@ -20,6 +20,9 @@ public class Place {
     @Id @Column(name = "id", columnDefinition = "BIGINT", nullable = false)
     private long id;
 
+    @Column(name = "shel_nm", columnDefinition = "VARCHAR(255)", nullable = false)
+    private String shelNm;
+
     @Column(name = "lon", columnDefinition = "DECIMAL", nullable = false)
     private BigDecimal lon; // 위도
 

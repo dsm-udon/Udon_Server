@@ -35,6 +35,7 @@ public class PlaceUtil {
 
             Place place = Place.builder()
                     .id(data.getLong("id"))
+                    .shelNm(data.getString("shel_nm"))
                     .lon(data.getBigDecimal("lon"))
                     .lat(data.getBigDecimal("lat"))
                     .address(data.getString("address"))

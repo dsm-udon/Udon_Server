@@ -14,7 +14,6 @@ public class PlaceController {
 
     private final PlaceService placeService;
 
-
     @GetMapping
     public PlaceListResponse getPlaceList() {
         return placeService.get();
