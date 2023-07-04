@@ -6,7 +6,5 @@ import com.example.udon_server.domain.shelter.presentation.dto.response.ShelterL
 
 public interface ShelterService {
 
-    void get();
-
     ShelterListResponse getDetail(ShelterDetailRequest req);
 }

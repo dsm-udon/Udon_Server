@@ -18,12 +18,6 @@ public class ShelterController {
 
     private final ShelterService shelterService;
 
-    @PutMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void getPlaceList() {
-        shelterService.get();
-    }
-
     @GetMapping("/detail")
     @ResponseStatus(HttpStatus.OK)
     public ShelterListResponse getPlaceListDetail(

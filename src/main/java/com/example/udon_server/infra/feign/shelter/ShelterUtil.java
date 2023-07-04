@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +19,14 @@ public class ShelterUtil {
 
     private final ShelterFeignClient shelterFeignClient;
 
-    public List<ShelterResponse> findPlace(String serviceKey, Integer page, Integer rows, String type) {
+    private static final String serviceKey = "ce1Xt98RxWbgebuHIYVtCG4IPkRZ2BmKv0eHXGpU/Jv0JkJDyFs+yGzYULQQEOnQ01JERyyeTZr+RmHNgQT8zQ==";
 
-        final long totalCount = new JSONObject(shelterFeignClient.getPlace(serviceKey, page, rows, type))
+    private static final String type = "json";
+
+    @Transactional
+    public List<ShelterResponse> findPlace(){
+
+        final long totalCount = new JSONObject(shelterFeignClient.getPlace(serviceKey, 1, 1, type))
                 .getJSONArray("TsunamiShelter").getJSONObject(0).getJSONArray("head")
                 .optJSONObject(0)
                 .getLong("totalCount");
@@ -29,7 +35,7 @@ public class ShelterUtil {
 
         for (int i = 0; i < totalCount; i++){
 
-            JSONObject data = new JSONObject(shelterFeignClient.getPlace(serviceKey, page + i, rows, type))
+            JSONObject data = new JSONObject(shelterFeignClient.getPlace(serviceKey, i + 1, 1, type))
                     .getJSONArray("TsunamiShelter").getJSONObject(1).getJSONArray("row").getJSONObject(0);
 
             Shelter shelter = Shelter.builder()
