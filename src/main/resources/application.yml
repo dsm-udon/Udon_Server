@@ -21,3 +21,7 @@ spring:
 server:
   port: ${SERVER_PORT:8080}
 
+feign:
+  actionKey: ce1Xt98RxWbgebuHIYVtCG4IPkRZ2BmKv0eHXGpU%2FJv0JkJDyFs%2ByGzYULQQEOnQ01JERyyeTZr%2BRmHNgQT8zQ%3D%3D
+  shelterKey: ce1Xt98RxWbgebuHIYVtCG4IPkRZ2BmKv0eHXGpU/Jv0JkJDyFs+yGzYULQQEOnQ01JERyyeTZr+RmHNgQT8zQ==
+

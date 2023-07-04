@@ -3,8 +3,10 @@ package com.example.udon_server.infra.feign.shelter;
 import com.example.udon_server.domain.shelter.entity.Shelter;
 import com.example.udon_server.domain.shelter.presentation.dto.response.ShelterResponse;
 import com.example.udon_server.domain.shelter.repository.ShelterRepository;
+import com.example.udon_server.infra.feign.shelter.client.ShelterFeignClient;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,7 +21,8 @@ public class ShelterUtil {
 
     private final ShelterFeignClient shelterFeignClient;
 
-    private static final String serviceKey = "ce1Xt98RxWbgebuHIYVtCG4IPkRZ2BmKv0eHXGpU/Jv0JkJDyFs+yGzYULQQEOnQ01JERyyeTZr+RmHNgQT8zQ==";
+    @Value("feign.shelterKey")
+    private String serviceKey;
 
     private static final String type = "json";
 
