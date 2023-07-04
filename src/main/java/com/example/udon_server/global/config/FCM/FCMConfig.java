@@ -17,7 +17,8 @@ public class FCMConfig {
 
     @Bean
     public FirebaseMessaging firebaseMessaging() throws IOException {
-        InputStream serviceAccount = new ClassPathResource("firebase/udon-c46aa-firebase-adminsdk-5fl83-69d891d58d.json").getInputStream();
+
+        InputStream rfToken = new ClassPathResource("firebase/udon-c46aa-firebase-adminsdk-5fl83-69d891d58d.json").getInputStream();
 
         FirebaseApp firebaseApp = null;
 
@@ -31,10 +32,10 @@ public class FCMConfig {
             }
         } else {
             FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .setCredentials(GoogleCredentials.fromStream(rfToken))
                     .build();
 
-            FirebaseApp.initializeApp(options);
+            firebaseApp = FirebaseApp.initializeApp(options);
         }
 
         return FirebaseMessaging.getInstance(firebaseApp);
