@@ -1,4 +1,4 @@
-package com.example.udon.domain.place.entity;
+package com.example.udon_server.domain.place.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

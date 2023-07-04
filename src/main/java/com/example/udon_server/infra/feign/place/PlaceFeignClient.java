@@ -1,4 +1,4 @@
-package com.example.udon.infra.feign.place;
+package com.example.udon_server.infra.feign.place;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

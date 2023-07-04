@@ -1,6 +1,6 @@
-package com.example.udon.domain.place.repository;
+package com.example.udon_server.domain.place.repository;
 
-import com.example.udon.domain.place.entity.Place;
+import com.example.udon_server.domain.place.entity.Place;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

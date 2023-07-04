@@ -1,4 +1,4 @@
-package com.example.udon.infra.feign.place;
+package com.example.udon_server.infra.feign.place;
 
 import feign.Logger;
 import org.springframework.context.annotation.Bean;

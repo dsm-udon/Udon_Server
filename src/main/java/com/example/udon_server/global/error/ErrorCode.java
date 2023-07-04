@@ -1,4 +1,4 @@
-package com.example.udon.global.error;
+package com.example.udon_server.global.error;
 
 public enum ErrorCode {
 

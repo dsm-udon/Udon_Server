@@ -1,6 +1,6 @@
-package com.example.udon.domain.place.presentation.dto;
+package com.example.udon_server.domain.place.presentation.dto;
 
-import com.example.udon.domain.place.entity.Place;
+import com.example.udon_server.domain.place.entity.Place;
 import lombok.Builder;
 import lombok.Getter;
 

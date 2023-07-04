@@ -1,7 +1,7 @@
-package com.example.udon.domain.place.presentation;
+package com.example.udon_server.domain.place.presentation;
 
-import com.example.udon.domain.place.presentation.dto.PlaceListResponse;
-import com.example.udon.domain.place.serivce.PlaceService;
+import com.example.udon_server.domain.place.presentation.dto.PlaceListResponse;
+import com.example.udon_server.domain.place.serivce.PlaceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

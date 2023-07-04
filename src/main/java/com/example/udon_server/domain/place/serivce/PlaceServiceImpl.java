@@ -1,7 +1,7 @@
-package com.example.udon.domain.place.serivce;
+package com.example.udon_server.domain.place.serivce;
 
-import com.example.udon.domain.place.presentation.dto.PlaceListResponse;
-import com.example.udon.infra.feign.place.PlaceUtil;
+import com.example.udon_server.domain.place.presentation.dto.PlaceListResponse;
+import com.example.udon_server.infra.feign.place.PlaceUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

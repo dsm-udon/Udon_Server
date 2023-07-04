@@ -1,4 +1,4 @@
-package com.example.udon.domain.place.presentation.dto;
+package com.example.udon_server.domain.place.presentation.dto;
 
 import lombok.Builder;
 import lombok.Getter;

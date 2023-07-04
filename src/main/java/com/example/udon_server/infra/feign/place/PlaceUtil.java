@@ -1,9 +1,8 @@
-package com.example.udon.infra.feign.place;
+package com.example.udon_server.infra.feign.place;
 
-import com.example.udon.domain.place.entity.Place;
-import com.example.udon.domain.place.presentation.dto.PlaceListResponse;
-import com.example.udon.domain.place.presentation.dto.PlaceResponse;
-import com.example.udon.domain.place.repository.PlaceRepository;
+import com.example.udon_server.domain.place.entity.Place;
+import com.example.udon_server.domain.place.presentation.dto.PlaceResponse;
+import com.example.udon_server.domain.place.repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
