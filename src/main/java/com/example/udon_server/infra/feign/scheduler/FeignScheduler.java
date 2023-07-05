@@ -21,8 +21,7 @@ public class FeignScheduler {
     private final ActionUtil actionUtil;
 
     @Transactional
-    @Scheduled(cron = "0 57 * * * *", zone = "Asia/Seoul")	// (Test용)
-    //@Scheduled(cron = "0 0 0 * * *", zone = "Asia/Seoul") // 매일
+    @Scheduled(cron = "0 0 0 * * *", zone = "Asia/Seoul") // 매일
     public void autoCrawlShelter() {
 
         try {
@@ -36,7 +35,7 @@ public class FeignScheduler {
     }
 
     //@Scheduled(cron = "0 * * * * *", zone = "Asia/Seoul")	// 1분마다 (Test용)
-    //@Scheduled(cron = "0 0 0 1 * *", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 0 0 1 * *", zone = "Asia/Seoul")
     public void authCrawlAction() {
 
         try {
