@@ -19,4 +19,5 @@ public interface ShelterRepository extends JpaRepository<Shelter, Long> {
             nativeQuery = true)
     List<Shelter> findAllShelter(@Param(value = "lat") BigDecimal lat, @Param(value = "lon") BigDecimal lon);
 
+    List<Shelter> findByShelNmContaining(String keyword);
 }
