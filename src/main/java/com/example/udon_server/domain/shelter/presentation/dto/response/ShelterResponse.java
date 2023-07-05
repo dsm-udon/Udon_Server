@@ -35,7 +35,7 @@ public class ShelterResponse {
                 .address(shelter.getAddress())
                 .shelAv(shelter.getShelAv())
                 .shelDivType(shelter.getShelDivType())
-                .seismic(shelter.isSeismic())
+                .seismic(shelter.getIsSeismic())
                 .build();
     }
 }

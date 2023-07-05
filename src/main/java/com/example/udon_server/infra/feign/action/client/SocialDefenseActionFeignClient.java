@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "actionClient", url = "http://openapi.safekorea.go.kr/openapi/service", configuration = FeignConfig.class)
+@FeignClient(name = "socialDefenseActionClient", url = "http://openapi.safekorea.go.kr/openapi/service", configuration = FeignConfig.class)
 public interface SocialDefenseActionFeignClient {
 
     @GetMapping("/behaviorconduct/socialdisaster/list")

@@ -23,7 +23,7 @@ public class ActionUtil {
 
     private final SocialDefenseActionFeignClient socialDefenseAction;
 
-    @Value("feign.actionKey")
+    @Value("${feign.actionKey}")
     private String serviceKey;
 
     @Transactional

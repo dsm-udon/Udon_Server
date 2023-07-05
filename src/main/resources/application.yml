@@ -24,4 +24,9 @@ server:
 feign:
   actionKey: ${ACTION_KEY}
   shelterKey: ${SHELTER_KEY}
+  client:
+    config:
+      default:
+        connect-timeout: 160000000
+        read-timeout: 160000000
 

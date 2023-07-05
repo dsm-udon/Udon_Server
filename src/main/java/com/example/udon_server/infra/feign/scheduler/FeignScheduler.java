@@ -14,19 +14,19 @@ import java.time.ZonedDateTime;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class FeignScheduler {
 
     private final ShelterUtil shelterUtil;
 
     private final ActionUtil actionUtil;
 
-    //@Scheduled(cron = "0 * * * * *", zone = "Asia/Seoul")	// 1분마다 (Test용)
-    @Scheduled(cron = "0 0 0 * * *", zone = "Asia/Seoul") // 매일
+    @Transactional
+    @Scheduled(cron = "0 57 * * * *", zone = "Asia/Seoul")	// (Test용)
+    //@Scheduled(cron = "0 0 0 * * *", zone = "Asia/Seoul") // 매일
     public void autoCrawlShelter() {
 
         try {
-            shelterUtil.findPlace();
+            shelterUtil.findShelter();
             log.info("Shelters Updated At" + ZonedDateTime.now(ZoneId.of("Asia/Seoul")));
 
         } catch (Exception e) {
@@ -35,7 +35,8 @@ public class FeignScheduler {
 
     }
 
-    @Scheduled(cron = "0 0 0 0 * *", zone = "Asia/Seoul")
+    //@Scheduled(cron = "0 * * * * *", zone = "Asia/Seoul")	// 1분마다 (Test용)
+    //@Scheduled(cron = "0 0 0 1 * *", zone = "Asia/Seoul")
     public void authCrawlAction() {
 
         try {
