@@ -1,16 +1,18 @@
 package com.example.udon_server.infra.feign.shelter;
 
 import com.example.udon_server.domain.shelter.entity.Shelter;
-import com.example.udon_server.domain.shelter.presentation.dto.response.ShelterResponse;
 import com.example.udon_server.domain.shelter.repository.ShelterRepository;
+import com.example.udon_server.infra.feign.shelter.client.ShelterFeignClient;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ShelterUtil {
@@ -19,23 +21,21 @@ public class ShelterUtil {
 
     private final ShelterFeignClient shelterFeignClient;
 
-    private static final String serviceKey = "ce1Xt98RxWbgebuHIYVtCG4IPkRZ2BmKv0eHXGpU/Jv0JkJDyFs+yGzYULQQEOnQ01JERyyeTZr+RmHNgQT8zQ==";
+    @Value("${feign.shelterKey}")
+    private String serviceKey;
 
-    private static final String type = "json";
+    public void findShelter(){
 
-    @Transactional
-    public List<ShelterResponse> findPlace(){
-
-        final long totalCount = new JSONObject(shelterFeignClient.getPlace(serviceKey, 1, 1, type))
+        final long totalCount = new JSONObject(shelterFeignClient.getPlace(serviceKey, 1, 1, "json"))
                 .getJSONArray("TsunamiShelter").getJSONObject(0).getJSONArray("head")
                 .optJSONObject(0)
                 .getLong("totalCount");
 
-        List<ShelterResponse> result = new ArrayList<>();
+        List<Shelter> shelterList = new ArrayList<>();
 
         for (int i = 0; i < totalCount; i++){
 
-            JSONObject data = new JSONObject(shelterFeignClient.getPlace(serviceKey, i + 1, 1, type))
+            JSONObject data = new JSONObject(shelterFeignClient.getPlace(serviceKey, i + 1, 1, "json"))
                     .getJSONArray("TsunamiShelter").getJSONObject(1).getJSONArray("row").getJSONObject(0);
 
             Shelter shelter = Shelter.builder()
@@ -49,12 +49,13 @@ public class ShelterUtil {
                     .isSeismic(!data.getString("seismic").isEmpty())
                     .build();
 
-            shelterRepository.save(shelter);
+            shelterList.add(shelter);
 
-            result.add(ShelterResponse.of(shelter));
+            log.info(shelter.toString());
+
         }
 
-        return result;
+        shelterRepository.saveAllAndFlush(shelterList);
 
     }
 }

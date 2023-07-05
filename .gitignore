@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### Admin SDK ###
-./src/main/resources/firebase
+firebase

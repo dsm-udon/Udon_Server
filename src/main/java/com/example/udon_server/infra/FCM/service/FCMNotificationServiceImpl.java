@@ -22,7 +22,7 @@ public class FCMNotificationServiceImpl implements FCMNotificationService {
 
         Notification notification = Notification.builder()
                 .setTitle(req.getTitle())
-                .setBody(req.getBody())
+                .setBody(req.getMessage() + "\n" + req.getBody())
                 .build();
 
         try {
