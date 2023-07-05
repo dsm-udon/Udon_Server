@@ -38,3 +38,6 @@ out/
 
 ### Admin SDK ###
 firebase
+
+### Dokcer-copose.yml ###
+Docker-compose.yml

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 public class FCMNotificationController {
@@ -15,7 +17,7 @@ public class FCMNotificationController {
 
     @PostMapping("/send-notification")
     public void sendNotification(
-        @RequestBody
+        @RequestBody @Valid
         FCMNotificationRequest req
     ) {
         fcmService.sendNotificationToAllUsers(req);

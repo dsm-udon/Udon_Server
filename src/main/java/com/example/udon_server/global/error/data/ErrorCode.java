@@ -7,6 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorCode {
 
+    FCM_KEY_NOT_MATCHED(400, "FCM Secret Key Not Matched"),
+
     SHELTER_NOT_FOUND(404, "Not Shelter"),
 
     FCM_TRANSFER_FAILURE(500, "FCM Transfer Failure"),

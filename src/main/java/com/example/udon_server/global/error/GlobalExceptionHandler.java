@@ -1,32 +1,32 @@
 package com.example.udon_server.global.error;
 
 import com.example.udon_server.global.error.data.BindExceptionResponse;
-import com.example.udon_server.global.error.exception.BusinessException;
 import com.example.udon_server.global.error.data.ErrorCode;
 import com.example.udon_server.global.error.data.ErrorResponse;
+import com.example.udon_server.global.error.exception.BusinessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BindException.class)
-    protected BindExceptionResponse bindException(BindException e) {
-        return ErrorResponse.of(e);
+    protected ResponseEntity<BindExceptionResponse> bindException(BindException e) {
+        return new ResponseEntity<>(ErrorResponse.of(e), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(BusinessException.class)
-    protected ErrorResponse businessException(BusinessException e) {
+    protected ResponseEntity<ErrorResponse> businessException(BusinessException e) {
 
         final ErrorCode errorCode = e.getErrorCode();
 
-        return ErrorResponse.builder()
-                .status(errorCode.getStatus())
+        final ErrorResponse errorResponse = ErrorResponse.builder()
                 .message(errorCode.getMessage())
                 .build();
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(errorCode.getStatus()));
     }
 }

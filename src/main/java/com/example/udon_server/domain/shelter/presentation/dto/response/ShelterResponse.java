@@ -24,7 +24,7 @@ public class ShelterResponse {
 
     private String shelDivType; // 대피소 분류 명
 
-    private boolean seismic; // 내진 적용 유무
+    private boolean isSeismic; // 내진 적용 유무
 
     public static ShelterResponse of(Shelter shelter) {
         return ShelterResponse.builder()
@@ -35,7 +35,7 @@ public class ShelterResponse {
                 .address(shelter.getAddress())
                 .shelAv(shelter.getShelAv())
                 .shelDivType(shelter.getShelDivType())
-                .seismic(shelter.getIsSeismic())
+                .isSeismic(shelter.getIsSeismic())
                 .build();
     }
 }

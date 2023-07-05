@@ -8,6 +8,8 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class FCMNotificationRequest {
 
+    @NotBlank(message = "secret_key를 입력해주세요")
+    private String secretKey;
 
     @NotBlank(message = "title을 입력해주세요")
     private String title;

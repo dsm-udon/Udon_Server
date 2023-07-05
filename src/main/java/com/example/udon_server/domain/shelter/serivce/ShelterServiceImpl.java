@@ -36,14 +36,6 @@ public class ShelterServiceImpl implements ShelterService {
 
     public List<ShelterResponse> search(String keyword) {
         List<Shelter> shelters = shelterRepository.findByShelNmContaining(keyword);
-        return shelters.stream().map(p -> new ShelterResponse(
-                p.getId(),
-                p.getShelNm(),
-                p.getLon(),
-                p.getLat(),
-                p.getAddress(),
-                p.getShelAv(),
-                p.getShelDivType(),
-                p.isSeismic())).collect(Collectors.toList());
+        return shelters.stream().map(ShelterResponse::of).toList();
     }
 }

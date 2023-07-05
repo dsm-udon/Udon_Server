@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class ShelterUtil {
     @Value("${feign.shelterKey}")
     private String serviceKey;
 
+    @Transactional
     public void findShelter(){
 
         final long totalCount = new JSONObject(shelterFeignClient.getPlace(serviceKey, 1, 1, "json"))
