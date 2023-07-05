@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -30,5 +32,18 @@ public class ShelterServiceImpl implements ShelterService {
         return ShelterListResponse.builder()
                 .shelterList(shelterList.stream().map(ShelterResponse::of).toList())
                 .build();
+    }
+
+    public List<ShelterResponse> search(String keyword) {
+        List<Shelter> shelters = shelterRepository.findByShelNmContaining(keyword);
+        return shelters.stream().map(p -> new ShelterResponse(
+                p.getId(),
+                p.getShelNm(),
+                p.getLon(),
+                p.getLat(),
+                p.getAddress(),
+                p.getShelAv(),
+                p.getShelDivType(),
+                p.isSeismic())).collect(Collectors.toList());
     }
 }
