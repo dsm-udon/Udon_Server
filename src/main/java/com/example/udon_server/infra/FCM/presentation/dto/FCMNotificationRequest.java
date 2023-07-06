@@ -22,4 +22,6 @@ public class FCMNotificationRequest {
 
     @NotBlank(message = "message을 입력해주세요")
     private String message;
+
+    private String token;
 }

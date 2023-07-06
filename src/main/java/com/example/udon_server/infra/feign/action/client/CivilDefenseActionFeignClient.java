@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface CivilDefenseActionFeignClient {
 
     @GetMapping("/behaviorconduct/disaster/civildefence/total/list")
-    String getCivil(@RequestParam("serviceKey") String serviceKey);
+    String getCivil(
+            @RequestParam("serviceKey") String serviceKey,
+            @RequestParam("pageNo") Integer page
+    );
 
 }

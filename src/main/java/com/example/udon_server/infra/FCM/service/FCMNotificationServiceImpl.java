@@ -1,5 +1,7 @@
 package com.example.udon_server.infra.FCM.service;
 
+import com.example.udon_server.domain.action.repository.ActionRepository;
+import com.example.udon_server.domain.action.service.ActionService;
 import com.example.udon_server.infra.FCM.exception.FCMKeyNotMatchedException;
 import com.example.udon_server.infra.FCM.exception.FCMTransferFailureException;
 import com.example.udon_server.infra.FCM.presentation.dto.FCMNotificationRequest;
@@ -21,6 +23,8 @@ public class FCMNotificationServiceImpl implements FCMNotificationService {
 
     private final FirebaseMessaging firebaseMessaging;
 
+    private final ActionService actionService;
+
     @Value("${server.secretKey}")
     private String secretKey;
 
@@ -35,12 +39,15 @@ public class FCMNotificationServiceImpl implements FCMNotificationService {
 
         Notification notification = Notification.builder()
                 .setTitle(req.getTitle())
-                .setBody(req.getMessage() + "\n" + req.getBody())
+                .setBody(
+                        req.getMessage() + "\n" +
+                        actionService.get(req.getTitle(), req.getBody()))
                 .build();
 
         try {
             Message message = Message.builder()
                     .setNotification(notification)
+                    .setToken(req.getToken())
                     .setTopic("all_users")
                     .build();
 

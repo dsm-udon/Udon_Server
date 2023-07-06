@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @Entity(name = "shelter")
 public class Shelter {
 
-    @Id @Column(name = "id", columnDefinition = "BIGINT", nullable = false)
+    @Id @Column(name = "idclass", columnDefinition = "BIGINT", nullable = false)
     private Long id;
 
     @Column(name = "shel_nm", columnDefinition = "VARCHAR(50)", nullable = false)

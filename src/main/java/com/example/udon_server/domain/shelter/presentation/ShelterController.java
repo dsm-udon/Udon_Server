@@ -21,7 +21,7 @@ public class ShelterController {
 
     private final ShelterService shelterService;
 
-    private final FeignScheduler findShelter;
+    private final FeignScheduler feignScheduler;
 
     @GetMapping("/detail")
     @ResponseStatus(HttpStatus.OK)
@@ -32,7 +32,7 @@ public class ShelterController {
     @PutMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void crawlShelter() {
-        findShelter.autoCrawlShelter();
+        feignScheduler.autoCrawlShelter();
     }
 
     @GetMapping("/search")
