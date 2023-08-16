@@ -1,6 +1,5 @@
 package com.example.udon_server.infra.FCM.service;
 
-import com.example.udon_server.domain.action.repository.ActionRepository;
 import com.example.udon_server.domain.action.service.ActionService;
 import com.example.udon_server.infra.FCM.exception.FCMKeyNotMatchedException;
 import com.example.udon_server.infra.FCM.exception.FCMTransferFailureException;
@@ -23,13 +22,12 @@ public class FCMNotificationServiceImpl implements FCMNotificationService {
 
     private final FirebaseMessaging firebaseMessaging;
 
-    private final ActionService actionService;
-
     @Value("${server.secretKey}")
     private String secretKey;
 
     @Override
-    public void sendNotificationToAllUsers(FCMNotificationRequest req) {
+    public void sendNotificationToAllUsers(FCMNotificationRequest req){
+
 
         if (!Objects.equals(req.getSecretKey(), secretKey)) {
 
@@ -39,21 +37,19 @@ public class FCMNotificationServiceImpl implements FCMNotificationService {
 
         Notification notification = Notification.builder()
                 .setTitle(req.getTitle())
-                .setBody(
-                        req.getMessage() + "\n" +
-                        actionService.get(req.getTitle(), req.getBody()))
+                .setBody(req.getMessage())
                 .build();
 
         try {
             Message message = Message.builder()
                     .setNotification(notification)
-                    .setToken(req.getToken())
                     .setTopic("all_users")
                     .build();
 
             firebaseMessaging.send(message);
 
         } catch (FirebaseMessagingException e) {
+            e.printStackTrace();
 
             log.error("알림 전송에 실패하였습니다.");
             throw FCMTransferFailureException.getInstance();

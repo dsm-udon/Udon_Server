@@ -58,6 +58,5 @@ public class ShelterUtil {
         }
 
         shelterRepository.saveAllAndFlush(shelterList);
-
     }
 }
